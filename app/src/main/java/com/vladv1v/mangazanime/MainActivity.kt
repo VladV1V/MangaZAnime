@@ -7,13 +7,10 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -42,6 +39,12 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+fun AppBar(title: String) {
+    SmallTopAppBar(title = { Text(title) })
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
 fun Navigation(navController: NavHostController) {
     Scaffold(
         bottomBar = {
@@ -61,7 +64,6 @@ fun Navigation(navController: NavHostController) {
                                 launchSingleTop = true
                                 restoreState = true
                             }
-
                         }
                     )
                 }
@@ -77,10 +79,13 @@ fun Navigation(navController: NavHostController) {
             composable(ScreenL.UpdatesList.route) { UpdatesScreen() }
             composable(ScreenL.Settings.route) { SettingsScreen() }
         }
+        items.forEach {screen ->
+            AppBar(title = screen.title)
+        }
     }
 }
 
-sealed class ScreenL(var title: String, @DrawableRes val icon: Int, val route: String) {
+sealed class ScreenL(val title: String, @DrawableRes val icon: Int, val route: String) {
     object LibraryList : ScreenL("Library", R.drawable.book, "library_list")
     object UpdatesList : ScreenL("Updates", R.drawable.updates, "updates")
     object Settings : ScreenL("Settings", R.drawable.settings, "settings")
