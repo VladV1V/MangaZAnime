@@ -20,6 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.vladv1v.mangazanime.ui.browse.BrowseListScreen
 import com.vladv1v.mangazanime.ui.library.LibraryListScreen
 import com.vladv1v.mangazanime.ui.moresettings.SettingsScreen
 import com.vladv1v.mangazanime.ui.theme.MangaZAnimeTheme
@@ -77,19 +78,22 @@ fun Navigation(navController: NavHostController) {
         ) {
             composable(ScreenL.LibraryList.route) { LibraryListScreen() }
             composable(ScreenL.UpdatesList.route) { UpdatesScreen() }
-            composable(ScreenL.Settings.route) { SettingsScreen() }
+            composable(ScreenL.BrowseList.route) { BrowseListScreen() }
+            composable(ScreenL.SettingsList.route) { SettingsScreen() }
         }
     }
 }
 
 sealed class ScreenL(val title: String, @DrawableRes val icon: Int, val route: String) {
     object LibraryList : ScreenL("Library", R.drawable.book, "library_list")
-    object UpdatesList : ScreenL("Updates", R.drawable.updates, "updates")
-    object Settings : ScreenL("Settings", R.drawable.settings, "settings")
+    object UpdatesList : ScreenL("Updates", R.drawable.updates, "updates_list")
+    object BrowseList : ScreenL("Browse", R.drawable.compass,"browse_list")
+    object SettingsList : ScreenL("Settings", R.drawable.settings, "settings_list")
 }
 
 val items = listOf(
     ScreenL.LibraryList,
     ScreenL.UpdatesList,
-    ScreenL.Settings
+    ScreenL.BrowseList,
+    ScreenL.SettingsList
 )
