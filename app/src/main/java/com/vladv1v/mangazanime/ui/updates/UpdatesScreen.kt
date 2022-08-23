@@ -1,19 +1,25 @@
 package com.vladv1v.mangazanime.ui.updates
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.vladv1v.mangazanime.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpdatesScreen() {
-    Surface(modifier = Modifier.fillMaxSize()) {
+    Scaffold(topBar = {
+        SmallTopAppBar({ Text(text = stringResource(id = R.string.updates)) })
+    }) { paddingValues ->
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
 
+        }
     }
 }

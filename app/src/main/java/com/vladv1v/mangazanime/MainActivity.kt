@@ -79,9 +79,6 @@ fun Navigation(navController: NavHostController) {
             composable(ScreenL.UpdatesList.route) { UpdatesScreen() }
             composable(ScreenL.Settings.route) { SettingsScreen() }
         }
-        items.forEach {screen ->
-            AppBar(title = screen.title)
-        }
     }
 }
 
